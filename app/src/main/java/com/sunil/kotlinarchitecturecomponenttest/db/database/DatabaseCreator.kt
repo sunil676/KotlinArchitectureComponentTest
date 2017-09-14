@@ -1,4 +1,4 @@
-package com.sunil.kotlinarchitecturecomponenttest.db
+package com.sunil.kotlinarchitecturecomponenttest.db.database
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.persistence.room.Room
@@ -15,7 +15,7 @@ object DatabaseCreator {
 
     val isDatabaseCreated = MutableLiveData<Boolean>()
 
-    lateinit var database: AppDatabase
+    lateinit var database: FriendsDatabase
 
     private val mInitializing = AtomicBoolean(true)
 
@@ -27,7 +27,7 @@ object DatabaseCreator {
         isDatabaseCreated.value = false
 
         Completable.fromAction {
-            database = Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME).build()
+            database = Room.databaseBuilder(context, FriendsDatabase::class.java, FriendsDatabase.DATABASE_NAME).build()
         }
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())

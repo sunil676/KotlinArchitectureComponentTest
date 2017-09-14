@@ -1,5 +1,6 @@
 package com.sunil.kotlinarchitecturecomponenttest.remote
 
+import com.sunil.kotlinarchitecturecomponenttest.db.entities.Friends
 import io.reactivex.Single
 
 /**

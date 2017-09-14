@@ -1,4 +1,4 @@
-package com.sunil.kotlinarchitecturecomponenttest.db
+package com.sunil.kotlinarchitecturecomponenttest.db.entities
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
@@ -11,15 +11,13 @@ import com.google.gson.reflect.TypeToken
  */
 @Entity(tableName = "friends")
 data class Friends (
-        @PrimaryKey var id: Long?,
+        @PrimaryKey var friend_id: String?,
         var name: String?,
-        var full_name: String?,
-        var description: String?,
-        var organization: String?) {
+        var email: String?) {
 
-    class ListDeserializer : ResponseDeserializable<List<Repo>> {
+    class ListDeserializer : ResponseDeserializable<List<Friends>> {
         override fun deserialize(content: String) =
-                Gson().fromJson<List<Repo>>(content, object : TypeToken<List<Repo>>() {}.type)
+                Gson().fromJson<List<Friends>>(content, object : TypeToken<List<Friends>>() {}.type)
     }
 
 }
