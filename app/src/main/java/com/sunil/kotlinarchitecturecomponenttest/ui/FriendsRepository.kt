@@ -8,11 +8,7 @@ import com.sunil.kotlinarchitecturecomponenttest.remote.RemoteDataSource
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
-import io.reactivex.internal.disposables.DisposableHelper.isDisposed
-import io.reactivex.ObservableEmitter
-import io.reactivex.ObservableOnSubscribe
 
 
 
@@ -37,17 +33,6 @@ object FriendsRepository : FriendsDataSource {
     }
 
 
-
-/*private fun getObservable(): Observable<List<ApiUser>> {
-    return Observable.create<List<ApiUser>> { e ->
-        if (!e.isDisposed) {
-            e.onNext(Utils.getApiUserList())
-            e.onComplete()
-        }
-    }
-}*/
-
-
     fun saveFriendsIntoDb(list: List<FriendsApiModel>){
         var listFriends = ArrayList<Friends>()
         for (FriendsApiModel in list) {
@@ -60,14 +45,3 @@ object FriendsRepository : FriendsDataSource {
            }
          FriendsLocalSource.saveFriends(listFriends)
         }
-
- /*   override fun getRepositories(organization: String): Single<List<Repo>>
-            = ReposLocalDataSource
-            .getRepositories(organization)
-            .onErrorResumeNext {
-                ReposRemoteDataSource.getRepositories(organization)
-                        .doOnSuccess { ReposLocalDataSource.saveRepositories(it) }
-            }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-}*/
